@@ -1,0 +1,114 @@
+{
+  "procurement_options": [
+    {
+      "id": "opt_iraq_basra_light_hormuz",
+      "supplier_country": "Iraq",
+      "crude_grade": "Basra Light",
+      "tanker_route": "Basra -> Jamnagar (via Strait of Hormuz)",
+      "spot_price_usd_bbl": 81.4,
+      "tanker_availability": 0.78,
+      "port_congestion": 0.35,
+      "grade_compatibility": 0.88
+    },
+    {
+      "id": "opt_iraq_basra_heavy_hormuz",
+      "supplier_country": "Iraq",
+      "crude_grade": "Basra Heavy",
+      "tanker_route": "Basra -> Jamnagar (via Strait of Hormuz)",
+      "spot_price_usd_bbl": 77.9,
+      "tanker_availability": 0.72,
+      "port_congestion": 0.38,
+      "grade_compatibility": 0.81
+    },
+    {
+      "id": "opt_saudi_arab_light_hormuz",
+      "supplier_country": "Saudi Arabia",
+      "crude_grade": "Arab Light",
+      "tanker_route": "Ras Tanura -> Vadinar (via Strait of Hormuz)",
+      "spot_price_usd_bbl": 84.2,
+      "tanker_availability": 0.83,
+      "port_congestion": 0.3,
+      "grade_compatibility": 0.92
+    },
+    {
+      "id": "opt_saudi_arab_heavy_hormuz",
+      "supplier_country": "Saudi Arabia",
+      "crude_grade": "Arab Heavy",
+      "tanker_route": "Ras Tanura -> Vadinar (via Strait of Hormuz)",
+      "spot_price_usd_bbl": 79.6,
+      "tanker_availability": 0.8,
+      "port_congestion": 0.32,
+      "grade_compatibility": 0.7
+    },
+    {
+      "id": "opt_uae_murban_hormuz",
+      "supplier_country": "UAE",
+      "crude_grade": "Murban",
+      "tanker_route": "Fujairah -> Mumbai (via Strait of Hormuz)",
+      "spot_price_usd_bbl": 85.1,
+      "tanker_availability": 0.87,
+      "port_congestion": 0.22,
+      "grade_compatibility": 0.85
+    },
+    {
+      "id": "opt_uae_upper_zakum_hormuz",
+      "supplier_country": "UAE",
+      "crude_grade": "Upper Zakum",
+      "tanker_route": "Fujairah -> Mumbai (via Strait of Hormuz)",
+      "spot_price_usd_bbl": 82.3,
+      "tanker_availability": 0.84,
+      "port_congestion": 0.24,
+      "grade_compatibility": 0.79
+    },
+    {
+      "id": "opt_russia_urals_suez",
+      "supplier_country": "Russia",
+      "crude_grade": "Urals",
+      "tanker_route": "Novorossiysk (Urals) -> Sikka (via Red Sea / Suez)",
+      "spot_price_usd_bbl": 68.5,
+      "tanker_availability": 0.55,
+      "port_congestion": 0.5,
+      "grade_compatibility": 0.74
+    },
+    {
+      "id": "opt_russia_espo_direct",
+      "supplier_country": "Russia",
+      "crude_grade": "ESPO",
+      "tanker_route": "Kozmino -> Paradip (Pacific direct)",
+      "spot_price_usd_bbl": 74.2,
+      "tanker_availability": 0.6,
+      "port_congestion": 0.42,
+      "grade_compatibility": 0.68
+    },
+    {
+      "id": "opt_nigeria_bonny_light_cape",
+      "supplier_country": "Nigeria",
+      "crude_grade": "Bonny Light",
+      "tanker_route": "Bonny -> Paradip (via Cape of Good Hope)",
+      "spot_price_usd_bbl": 86.7,
+      "tanker_availability": 0.63,
+      "port_congestion": 0.4,
+      "grade_compatibility": 0.66
+    },
+    {
+      "id": "opt_us_wti_midland_cape",
+      "supplier_country": "United States",
+      "crude_grade": "WTI Midland",
+      "tanker_route": "US Gulf (Houston) -> Vadinar (via Cape of Good Hope)",
+      "spot_price_usd_bbl": 83.9,
+      "tanker_availability": 0.7,
+      "port_congestion": 0.28,
+      "grade_compatibility": 0.58
+    },
+    {
+      "id": "opt_us_mars_blend_cape",
+      "supplier_country": "United States",
+      "crude_grade": "Mars Blend",
+      "tanker_route": "US Gulf (Houston) -> Vadinar (via Cape of Good Hope)",
+      "spot_price_usd_bbl": 80.1,
+      "tanker_availability": 0.68,
+      "port_congestion": 0.3,
+      "grade_compatibility": 0.34
+    }
+  ]
+}

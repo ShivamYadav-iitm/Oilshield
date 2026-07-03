@@ -1,0 +1,55 @@
+{
+  "corridors": [
+    {
+      "id": "strait_of_hormuz",
+      "name": "Strait of Hormuz",
+      "target_type": "corridor",
+      "corridor_import_share": 0.62,
+      "description": "Narrow chokepoint between the Persian Gulf and the Gulf of Oman; the single largest artery for India's crude imports from Gulf producers.",
+      "chokepoint": true,
+      "polyline": [
+        [26.9667, 56.5333],
+        [26.7333, 56.4667],
+        [26.5665, 56.2497],
+        [26.3, 56.1],
+        [25.9667, 56.9]
+      ],
+      "center": [26.5665, 56.2497]
+    },
+    {
+      "id": "red_sea",
+      "name": "Red Sea",
+      "target_type": "corridor",
+      "corridor_import_share": 0.14,
+      "description": "Bab-el-Mandeb to the Suez Canal corridor carrying West African, Mediterranean, US, and some Russian barrels toward India; exposed to Houthi shipping attacks.",
+      "chokepoint": true,
+      "polyline": [
+        [12.5833, 43.3333],
+        [15.5, 41.8],
+        [19.5, 38.5],
+        [24.5, 35.5],
+        [27.9, 33.7],
+        [29.9668, 32.5498]
+      ],
+      "center": [20.0, 38.0]
+    },
+    {
+      "id": "cape_of_good_hope",
+      "name": "Cape of Good Hope",
+      "target_type": "corridor",
+      "corridor_import_share": 0.09,
+      "description": "Longer diversion route around southern Africa used when the Red Sea or Suez is disrupted; adds voyage days but avoids chokepoints.",
+      "chokepoint": false,
+      "polyline": [
+        [4.5, 6.5],
+        [-6.0, 11.0],
+        [-20.0, 14.0],
+        [-34.3587, 18.4736],
+        [-33.0, 27.0],
+        [-20.0, 40.0],
+        [-6.0, 52.0]
+      ],
+      "center": [-34.3587, 18.4736]
+    }
+  ]
+}

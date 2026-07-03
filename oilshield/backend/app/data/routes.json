@@ -1,0 +1,109 @@
+{
+  "routes": [
+    {
+      "id": "basra_jamnagar_hormuz",
+      "name": "Basra -> Jamnagar (via Strait of Hormuz)",
+      "supplier_country": "Iraq",
+      "origin_port": "Basra Oil Terminal",
+      "destination_port": "Sikka / Jamnagar",
+      "corridor": "Strait of Hormuz",
+      "distance_nm": 1520,
+      "typical_transit_days": 6,
+      "waypoints": [
+        [30.0, 48.5],
+        [28.5, 50.2],
+        [26.5665, 56.2497],
+        [24.6, 60.0],
+        [22.4315, 69.8236]
+      ]
+    },
+    {
+      "id": "rastanura_vadinar_hormuz",
+      "name": "Ras Tanura -> Vadinar (via Strait of Hormuz)",
+      "supplier_country": "Saudi Arabia",
+      "origin_port": "Ras Tanura",
+      "destination_port": "Vadinar",
+      "corridor": "Strait of Hormuz",
+      "distance_nm": 1490,
+      "typical_transit_days": 6,
+      "waypoints": [
+        [26.6927, 50.1613],
+        [26.5665, 56.2497],
+        [24.8, 60.5],
+        [22.2833, 69.7167]
+      ]
+    },
+    {
+      "id": "fujairah_mumbai_hormuz",
+      "name": "Fujairah -> Mumbai (via Strait of Hormuz)",
+      "supplier_country": "UAE",
+      "origin_port": "Fujairah",
+      "destination_port": "Mumbai (JNPT)",
+      "corridor": "Strait of Hormuz",
+      "distance_nm": 1100,
+      "typical_transit_days": 5,
+      "waypoints": [
+        [25.1288, 56.3265],
+        [24.5, 58.5],
+        [21.5, 66.0],
+        [18.9633, 72.8425]
+      ]
+    },
+    {
+      "id": "urals_sikka_suez",
+      "name": "Novorossiysk (Urals) -> Sikka (via Red Sea / Suez)",
+      "supplier_country": "Russia",
+      "origin_port": "Novorossiysk",
+      "destination_port": "Sikka / Jamnagar",
+      "corridor": "Red Sea",
+      "distance_nm": 6200,
+      "typical_transit_days": 21,
+      "waypoints": [
+        [44.7, 37.8],
+        [31.2, 32.3],
+        [29.9668, 32.5498],
+        [20.0, 38.0],
+        [12.5833, 43.3333],
+        [15.0, 55.0],
+        [22.4315, 69.8236]
+      ]
+    },
+    {
+      "id": "bonny_paradip_cape",
+      "name": "Bonny -> Paradip (via Cape of Good Hope)",
+      "supplier_country": "Nigeria",
+      "origin_port": "Bonny Terminal",
+      "destination_port": "Paradip",
+      "corridor": "Cape of Good Hope",
+      "distance_nm": 9800,
+      "typical_transit_days": 31,
+      "waypoints": [
+        [4.4508, 7.1608],
+        [-10.0, 8.0],
+        [-34.3587, 18.4736],
+        [-25.0, 45.0],
+        [0.0, 72.0],
+        [20.2648, 86.6947]
+      ]
+    },
+    {
+      "id": "usgulf_vadinar_cape",
+      "name": "US Gulf (Houston) -> Vadinar (via Cape of Good Hope)",
+      "supplier_country": "United States",
+      "origin_port": "Houston / Corpus Christi",
+      "destination_port": "Vadinar",
+      "corridor": "Cape of Good Hope",
+      "distance_nm": 11500,
+      "typical_transit_days": 38,
+      "waypoints": [
+        [29.3, -94.8],
+        [10.0, -55.0],
+        [-15.0, -20.0],
+        [-34.3587, 18.4736],
+        [-20.0, 45.0],
+        [10.0, 65.0],
+        [22.2833, 69.7167]
+      ]
+    }
+  ]
+}

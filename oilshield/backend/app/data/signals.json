@@ -1,0 +1,92 @@
+{
+  "news_feed": [
+    {
+      "source": "Reuters",
+      "timestamp": "2024-06-03T08:15:00Z",
+      "text": "Tensions escalate near the Strait of Hormuz as naval forces seize a tanker, raising fears of disruption to Gulf crude flows bound for Asian refiners.",
+      "raw_severity": 82.0,
+      "hinted_target": "Strait of Hormuz"
+    },
+    {
+      "source": "Bloomberg",
+      "timestamp": "2024-06-03T09:40:00Z",
+      "text": "Houthi forces claim a fresh missile strike on a crude carrier in the southern Red Sea, prompting more owners to reroute cargoes around Africa.",
+      "raw_severity": 74.0,
+      "hinted_target": "Red Sea"
+    },
+    {
+      "source": "S&P Global Platts",
+      "timestamp": "2024-06-02T14:05:00Z",
+      "text": "Saudi Arabia signals it will hold official selling prices steady for Asian buyers next month, easing supply concerns for Indian refiners.",
+      "raw_severity": 28.0,
+      "hinted_target": "Saudi Arabia"
+    },
+    {
+      "source": "TradeWinds",
+      "timestamp": "2024-06-01T18:20:00Z",
+      "text": "Insurance war-risk premiums for voyages via the Cape of Good Hope tick lower as more operators favour the longer but safer diversion.",
+      "raw_severity": 22.0,
+      "hinted_target": "Cape of Good Hope"
+    },
+    {
+      "source": "Reuters",
+      "timestamp": "2024-06-04T06:30:00Z",
+      "text": "A quarterly earnings note discusses refining margins broadly but names no specific corridor, region, or crude grade.",
+      "raw_severity": 12.0,
+      "hinted_target": "Saudi Arabia"
+    }
+  ],
+  "sanctions_feed": [
+    {
+      "source": "OFAC Notice",
+      "timestamp": "2024-05-30T11:00:00Z",
+      "text": "New sanctions designations target additional vessels lifting Russian Urals crude, tightening compliant tonnage available to importers.",
+      "raw_severity": 66.0,
+      "hinted_target": "Russia"
+    },
+    {
+      "source": "EU Council Press",
+      "timestamp": "2024-05-29T15:45:00Z",
+      "text": "The bloc expands the price-cap enforcement mechanism on seaborne Russian crude, adding paperwork burdens for buyers in Asia.",
+      "raw_severity": 54.0,
+      "hinted_target": "Russia"
+    },
+    {
+      "source": "Lloyd's List Intelligence",
+      "timestamp": "2024-05-28T10:10:00Z",
+      "text": "Iraq's SOMO reassures term customers that Basra Light liftings remain unaffected by regional sanctions discussions.",
+      "raw_severity": 31.0,
+      "hinted_target": "Iraq"
+    }
+  ],
+  "shipping_feed": [
+    {
+      "source": "GDELT",
+      "timestamp": "2024-06-03T12:00:00Z",
+      "text": "AIS tracking shows a cluster of VLCCs idling east of the Strait of Hormuz awaiting convoy escort, lengthening effective transit times.",
+      "raw_severity": 58.0,
+      "hinted_target": "Strait of Hormuz"
+    },
+    {
+      "source": "MarineTraffic Digest",
+      "timestamp": "2024-06-02T20:30:00Z",
+      "text": "Port congestion at UAE loading terminals eases as a backlog of tankers clears following weather delays.",
+      "raw_severity": 19.0,
+      "hinted_target": "UAE"
+    },
+    {
+      "source": "Lloyd's List Intelligence",
+      "timestamp": "2024-06-01T07:50:00Z",
+      "text": "Diversions around the Red Sea push West African-to-India voyage days higher, squeezing available Suezmax capacity.",
+      "raw_severity": 47.0,
+      "hinted_target": "Nigeria"
+    },
+    {
+      "source": "GDELT",
+      "timestamp": "2024-05-31T22:15:00Z",
+      "text": "US Gulf Coast crude exports hit a seasonal high as arbitrage to Asia stays open despite longer Cape routing.",
+      "raw_severity": 24.0,
+      "hinted_target": "United States"
+    }
+  ]
+}

@@ -1,0 +1,698 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1. Scaffold the backend project skeleton": [
+      {
+        "executionId": "f3a2e28c-5831-490b-a7a9-c03b47218e25",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783077409340
+      },
+      {
+        "executionId": "f3a2e28c-5831-490b-a7a9-c03b47218e25",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078365170
+      }
+    ],
+    "2. Scaffold the frontend project shell": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078561486
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078578931
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079064690
+      }
+    ],
+    "3.1 Implement `app/core/constants.py` with the documented model constants": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078561567
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078579997
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079065829
+      }
+    ],
+    "3.2 Implement `app/core/errors.py` typed error hierarchy": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078561631
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078580737
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079066757
+      }
+    ],
+    "3.3 Implement `app/core/config.py`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078561696
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078584529
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079067837
+      }
+    ],
+    "4.1 Implement Pydantic/SQLModel models in `app/models/`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078561748
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079079963
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079392121
+      }
+    ],
+    "4.2 Mirror the models as TypeScript types in `frontend/src/types/`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078561805
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079080100
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079392231
+      }
+    ],
+    "5. Bundle simulated datasets": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078561864
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078585307
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079068225
+      }
+    ],
+    "6.1 Define the abstraction interfaces in `app/providers/`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078561921
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079412462
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079696087
+      }
+    ],
+    "6.2 Implement `SimulatedDataSource` (datasource provider)": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078561984
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079696155
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783080213385
+      }
+    ],
+    "6.3 Implement `DeterministicExtractor` (LLM provider fallback)": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562036
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079698211
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783080214414
+      }
+    ],
+    "6.5 Implement `JsonFileScenarioRepository` and `SqliteScenarioRepository`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562097
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079698312
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783080214615
+      }
+    ],
+    "7.1 Implement `Signal_Ingestion_Service` in `app/services/`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562163
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783080233592
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783080811393
+      }
+    ],
+    "8.1 Implement `LLM_Extractor` service wired to the `LLMProvider` interface": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562215
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783080234218
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783080812482
+      }
+    ],
+    "9.1 Implement `Risk_Scoring_Engine` in `app/services/`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562268
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783080867908
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081062208
+      }
+    ],
+    "10.1 Implement the signals router `POST /signals/refresh`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562323
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081062709
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081382814
+      }
+    ],
+    "10.2 Implement the risk router `GET /risk/scores` and `GET /risk/{target}/signals`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562378
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081383547
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081759127
+      }
+    ],
+    "11. Checkpoint - backend risk path runnable": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562431
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081759199
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081958193
+      }
+    ],
+    "12.1 Implement the scenario catalog in `Scenario_Simulator`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562482
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081959137
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783082905055
+      }
+    ],
+    "12.2 Implement adjustable-assumption validation": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562533
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081961734
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783082906053
+      }
+    ],
+    "13.1 Implement the deterministic impact cascade in `Scenario_Simulator`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562585
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081962099
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783082908664
+      }
+    ],
+    "14.1 Implement save/load in `Scenario_Simulator` over the `ScenarioRepository`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562660
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081962181
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783082908756
+      }
+    ],
+    "15. Scenario API endpoints": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562710
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783082923597
+      },
+      {
+        "executionId": "3aa4a087-ee0b-4fcb-baaf-ee8a6cd9db53",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783091813745
+      }
+    ],
+    "16.1 Implement `Procurement_Recommender` service": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562760
+      },
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783082924566
+      },
+      {
+        "executionId": "3aa4a087-ee0b-4fcb-baaf-ee8a6cd9db53",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783091815739
+      }
+    ],
+    "16.2 Implement the procurement router `POST /procurement/recommend`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562811
+      },
+      {
+        "executionId": "3aa4a087-ee0b-4fcb-baaf-ee8a6cd9db53",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783091815935
+      },
+      {
+        "executionId": "3aa4a087-ee0b-4fcb-baaf-ee8a6cd9db53",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783092003431
+      }
+    ],
+    "17.1 Implement the `Pipeline Orchestrator` service": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562864
+      },
+      {
+        "executionId": "3aa4a087-ee0b-4fcb-baaf-ee8a6cd9db53",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783092004482
+      },
+      {
+        "executionId": "c8dbcc43-5f97-4db1-a066-0374f4aadecd",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783104444333
+      }
+    ],
+    "17.2 Implement the pipeline router `POST /pipeline/run`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562917
+      },
+      {
+        "executionId": "c8dbcc43-5f97-4db1-a066-0374f4aadecd",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783104456843
+      },
+      {
+        "executionId": "c8dbcc43-5f97-4db1-a066-0374f4aadecd",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783104707547
+      }
+    ],
+    "18. Checkpoint - full backend pipeline runnable in simulated mode": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078562995
+      },
+      {
+        "executionId": "c8dbcc43-5f97-4db1-a066-0374f4aadecd",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783104830344
+      }
+    ],
+    "19.1 Implement the typed API client in `frontend/src/api/`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563045
+      }
+    ],
+    "19.2 Implement `src/lib/` helpers": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563101
+      }
+    ],
+    "20.1 Implement the `Dashboard Shell` component": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563151
+      }
+    ],
+    "20.2 Implement shared components: status badge, timeline, map wrapper, animated stepper": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563207
+      }
+    ],
+    "21.1 Implement the `Risk Radar View`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563262
+      }
+    ],
+    "22.1 Implement the `Scenario Simulator View`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563324
+      }
+    ],
+    "24.1 Implement the `Pipeline Runner View`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563384
+      }
+    ],
+    "24.2 Implement per-module loading and error isolation across all views": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563439
+      }
+    ],
+    "25. Checkpoint - end-to-end demo works in simulated mode": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563507
+      },
+      {
+        "executionId": "6365b38b-c8d9-4652-971a-d4d4f009a909",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783107796841
+      }
+    ],
+    "26.1 Implement `LiveDataSource` (news/GDELT feed) implementing `DataSourceProvider`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563573
+      }
+    ],
+    "26.2 Implement `GroqProvider` (primary) and `GeminiProvider` (secondary) implementing `LLMProvider`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563626
+      }
+    ],
+    "26.3 Wire provider selection through `core/config.py`": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563678
+      }
+    ],
+    "27. Final checkpoint - ensure all tests pass": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783078563733
+      },
+      {
+        "executionId": "6365b38b-c8d9-4652-971a-d4d4f009a909",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783109221648
+      }
+    ],
+    "3. Define shared core config, constants, and errors (backend)": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783079067889
+      }
+    ],
+    "6. Provider and storage abstraction (interfaces + deterministic/simulated implementations)": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783080214697
+      }
+    ],
+    "7. Signal ingestion and normalization service": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783080811465
+      }
+    ],
+    "8. LLM/deterministic extraction service": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783080812551
+      }
+    ],
+    "9. Risk scoring engine and banding": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081062275
+      }
+    ],
+    "10. Signals and risk API endpoints": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783081759246
+      }
+    ],
+    "12. Scenario configuration and assumption validation": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783082906157
+      }
+    ],
+    "13. Scenario impact cascade computation": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783082908810
+      }
+    ],
+    "14. Scenario save and restore": [
+      {
+        "executionId": "541a1e97-ecde-46ac-b550-89cfe2188929",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783082908880
+      }
+    ],
+    "16. Procurement recommender": [
+      {
+        "executionId": "3aa4a087-ee0b-4fcb-baaf-ee8a6cd9db53",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783092003516
+      }
+    ],
+    "17. Pipeline orchestrator and end-to-end endpoint": [
+      {
+        "executionId": "c8dbcc43-5f97-4db1-a066-0374f4aadecd",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783104707641
+      }
+    ],
+    "19. Frontend API client and shared helpers": [
+      {
+        "executionId": "c8dbcc43-5f97-4db1-a066-0374f4aadecd",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783105148441
+      }
+    ],
+    "20. Dashboard shell and shared components": [
+      {
+        "executionId": "c8dbcc43-5f97-4db1-a066-0374f4aadecd",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783105782407
+      }
+    ],
+    "21. Risk Radar view": [
+      {
+        "executionId": "6365b38b-c8d9-4652-971a-d4d4f009a909",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783106455766
+      }
+    ],
+    "22. Scenario Simulator view": [
+      {
+        "executionId": "6365b38b-c8d9-4652-971a-d4d4f009a909",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783106701628
+      }
+    ],
+    "23. Procurement view": [
+      {
+        "executionId": "6365b38b-c8d9-4652-971a-d4d4f009a909",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783106878258
+      }
+    ],
+    "24. Pipeline Runner view and error/loading states": [
+      {
+        "executionId": "6365b38b-c8d9-4652-971a-d4d4f009a909",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783107582944
+      }
+    ],
+    "26. Live provider implementations behind the abstraction": [
+      {
+        "executionId": "6365b38b-c8d9-4652-971a-d4d4f009a909",
+        "chatSessionId": "sess_3d68dce9-61f5-45eb-b824-b193f7edca2b",
+        "timestamp": 1783108256357
+      }
+    ]
+  }
+}
