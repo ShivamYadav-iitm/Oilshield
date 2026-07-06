@@ -29,10 +29,9 @@ import {
   Panel,
   LoadingIndicator,
   ErrorMessage,
-  ProvenanceBanner,
   type CorridorPolyline,
 } from "../components";
-import { formatDateTime } from "../lib";
+import { formatDateTime, bandColor } from "../lib";
 import type { RiskScore, Signal } from "../types";
 
 /**
@@ -96,20 +95,18 @@ interface DetailState {
 /** The Live Risk Radar module: map + ranked list + detail drawer + provenance. */
 export function RiskRadarView() {
   const [scores, setScores] = useState<RiskScore[]>([]);
-  const [modes, setModes] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [detail, setDetail] = useState<DetailState | null>(null);
 
-  /** Fetch banded, ranked risk scores plus provenance modes. */
+  /** Fetch banded, ranked risk scores. */
   const loadScores = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       const res = await getRiskScores();
       setScores(res.risk_scores);
-      setModes(res.data_source_modes ?? {});
     } catch (err) {
       const message =
         err instanceof ApiError ? err.message : "Failed to load risk scores.";
@@ -160,7 +157,7 @@ export function RiskRadarView() {
       type="button"
       onClick={() => void handleRefresh()}
       disabled={refreshing || loading}
-      className="inline-flex items-center gap-1.5 rounded-md border border-surface-700 px-3 py-1 text-xs font-medium text-slate-200 transition hover:bg-surface-800 disabled:cursor-not-allowed disabled:opacity-50"
+      className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
     >
       <RefreshCw
         className={`h-3.5 w-3.5 ${refreshing ? "animate-spin" : ""}`}
@@ -175,13 +172,12 @@ export function RiskRadarView() {
       title="Live Risk Radar"
       subtitle="Corridor & supplier-country risk by band"
       icon={Radar}
+      accent="rose"
+      motionDelay={0.05}
       actions={refreshButton}
       ariaLabel="Live Risk Radar"
       bodyClassName="space-y-4"
     >
-      {/* Provenance banner (R4.4). */}
-      <ProvenanceBanner modes={modes} />
-
       {loading ? (
         <LoadingIndicator label="Scoring corridors…" fullHeight />
       ) : error ? (
@@ -196,9 +192,12 @@ export function RiskRadarView() {
           {/* Ranked list of corridors + countries, highest-to-lowest (R4.2). */}
           <div className="lg:col-span-2">
             {ranked.length === 0 ? (
-              <p className="text-sm text-slate-400">No risk scores available.</p>
+              <p className="text-sm text-slate-500">No risk scores available.</p>
             ) : (
-              <ul className="flex flex-col gap-1.5" aria-label="Ranked risk targets">
+              <ul
+                className="divide-y divide-slate-100"
+                aria-label="Ranked risk targets"
+              >
                 {ranked.map((s) => {
                   const isActive = detail?.target === s.target;
                   return (
@@ -207,18 +206,27 @@ export function RiskRadarView() {
                         type="button"
                         onClick={() => void handleSelectTarget(s.target)}
                         aria-pressed={isActive}
-                        className={`flex w-full items-center justify-between gap-3 rounded-lg border px-3 py-2 text-left transition ${
-                          isActive
-                            ? "border-accent/50 bg-surface-800"
-                            : "border-surface-700 bg-surface-900/40 hover:bg-surface-800/60"
+                        style={{ borderLeftColor: bandColor(s.band) }}
+                        className={`flex w-full items-center justify-between gap-3 border-l-2 py-2.5 pl-3 pr-1 text-left transition hover:bg-slate-50 ${
+                          isActive ? "bg-slate-50" : ""
                         }`}
                       >
                         <span className="min-w-0 flex-1">
-                          <span className="block text-sm font-medium text-slate-100">
+                          <span className="block truncate text-sm font-medium text-slate-900">
                             {s.target}
                           </span>
                           <span className="text-[10px] uppercase tracking-wide text-slate-500">
                             {s.target_type}
+                          </span>
+                          {/* Slim score bar colored by band. */}
+                          <span className="mt-1.5 block h-1 w-full overflow-hidden rounded-full bg-slate-100">
+                            <span
+                              className="block h-full rounded-full"
+                              style={{
+                                width: `${Math.max(0, Math.min(100, s.score))}%`,
+                                backgroundColor: bandColor(s.band),
+                              }}
+                            />
                           </span>
                         </span>
                         <StatusBadge band={s.band} score={s.score} size="sm" />
@@ -234,15 +242,15 @@ export function RiskRadarView() {
 
       {/* Detail drawer: contributing signals with source + timestamp (R4.3). */}
       {detail && (
-        <div className="rounded-lg border border-surface-700 bg-surface-900/40 p-4">
+        <div className="border-t border-slate-100 pt-4">
           <div className="mb-3 flex items-center justify-between gap-3">
-            <h3 className="text-sm font-semibold text-slate-100">
+            <h3 className="text-sm font-semibold text-slate-900">
               Contributing signals — {detail.target}
             </h3>
             <button
               type="button"
               onClick={() => setDetail(null)}
-              className="rounded-md border border-surface-700 px-2 py-0.5 text-xs text-slate-300 transition hover:bg-surface-800"
+              className="rounded-md px-2 py-0.5 text-xs text-slate-600 transition hover:bg-slate-50"
             >
               Close
             </button>
@@ -257,19 +265,19 @@ export function RiskRadarView() {
               onRetry={() => void handleSelectTarget(detail.target)}
             />
           ) : detail.signals.length === 0 ? (
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-500">
               No contributing signals for this target.
             </p>
           ) : (
-            <ul className="flex flex-col gap-2" aria-label="Contributing signals">
+            <ul
+              className="divide-y divide-slate-100"
+              aria-label="Contributing signals"
+            >
               {detail.signals.map((sig) => (
-                <li
-                  key={sig.id}
-                  className="rounded-md border border-surface-700 bg-surface-900/60 p-3"
-                >
-                  <p className="text-sm text-slate-200">{sig.text_summary}</p>
+                <li key={sig.id} className="py-2.5">
+                  <p className="text-sm text-slate-700">{sig.text_summary}</p>
                   <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-slate-500">
-                    <span className="font-medium text-slate-400">{sig.source}</span>
+                    <span className="font-medium text-slate-600">{sig.source}</span>
                     <span aria-hidden>•</span>
                     <time dateTime={sig.timestamp}>{formatDateTime(sig.timestamp)}</time>
                     <span aria-hidden>•</span>

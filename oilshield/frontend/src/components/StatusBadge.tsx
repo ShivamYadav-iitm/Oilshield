@@ -1,10 +1,12 @@
-// StatusBadge — renders a risk band as a colored pill (Requirement 10.2).
+// StatusBadge — renders a risk band as a minimal status indicator (Requirement 10.2).
 //
-// Presentational only: given a `RiskBand`, it applies the shared band badge
-// classes and label from `src/lib`. Optionally shows the numeric score.
+// Presentational only: clean typography in the band's semantic color, with no
+// leading dot, no filled background, and no border box. The band label is shown
+// in small, letter-spaced uppercase and the optional score in a slightly larger
+// bold monospace. Compact, right-alignable, and vertically centered.
 
 import type { RiskBand } from "../types";
-import { bandBadgeClasses, bandLabel, formatScore } from "../lib";
+import { bandLabel, formatScore } from "../lib";
 
 export interface StatusBadgeProps {
   band: RiskBand;
@@ -15,31 +17,40 @@ export interface StatusBadgeProps {
   className?: string;
 }
 
-const SIZE_CLASSES: Record<NonNullable<StatusBadgeProps["size"]>, string> = {
-  sm: "px-2 py-0.5 text-[10px]",
-  md: "px-2.5 py-1 text-xs",
+/** Band text color (no background, no border). Amber kept readable on white. */
+const BAND_TEXT: Record<RiskBand, string> = {
+  low: "text-emerald-700",
+  elevated: "text-amber-600",
+  high: "text-rose-700",
 };
 
-/** A rounded status pill colored by risk band (green / amber / red). */
+/** Font size for the uppercase band label, per size. */
+const LABEL_SIZE: Record<NonNullable<StatusBadgeProps["size"]>, string> = {
+  sm: "text-[10px]",
+  md: "text-[11px]",
+};
+
+/** Font size for the monospace score, per size (a touch larger than the label). */
+const SCORE_SIZE: Record<NonNullable<StatusBadgeProps["size"]>, string> = {
+  sm: "text-xs",
+  md: "text-sm",
+};
+
+/** A minimal band indicator: label (+ optional score) as clean colored type. */
 export function StatusBadge({ band, score, size = "md", className }: StatusBadgeProps) {
-  const classes = [
-    "inline-flex items-center gap-1.5 rounded-full font-semibold uppercase tracking-wide",
-    bandBadgeClasses(band),
-    SIZE_CLASSES[size],
-    className ?? "",
-  ]
+  const classes = ["inline-flex items-center gap-1.5", BAND_TEXT[band], className ?? ""]
     .filter(Boolean)
     .join(" ");
 
   return (
     <span className={classes}>
-      <span
-        aria-hidden
-        className="h-1.5 w-1.5 rounded-full bg-current opacity-80"
-      />
-      {bandLabel(band)}
+      <span className={`font-semibold uppercase tracking-wider ${LABEL_SIZE[size]}`}>
+        {bandLabel(band)}
+      </span>
       {score !== undefined && (
-        <span className="font-mono normal-case opacity-90">{formatScore(score)}</span>
+        <span className={`font-mono font-bold leading-none ${SCORE_SIZE[size]}`}>
+          {formatScore(score)}
+        </span>
       )}
     </span>
   );

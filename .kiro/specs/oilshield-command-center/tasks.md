@@ -264,11 +264,11 @@ All code examples use **Python (FastAPI + Pydantic/SQLModel, Hypothesis)** for t
   - Ensure all tests pass, ask the user if questions arise.
 
 - [x] 19. Frontend API client and shared helpers
-  - [~] 19.1 Implement the typed API client in `frontend/src/api/`
+  - [ ] 19.1 Implement the typed API client in `frontend/src/api/`
     - Wrap fetch for every backend endpoint, mirror response types, and normalize errors to
       `{ module, message }`
     - _Requirements: 10.5_
-  - [~] 19.2 Implement `src/lib/` helpers
+  - [ ] 19.2 Implement `src/lib/` helpers
     - Band-to-color helper and formatting utilities used by badges, map, and charts
     - _Requirements: 4.1_
   - [ ]* 19.3 Write component test for the band-to-color helper
@@ -276,11 +276,11 @@ All code examples use **Python (FastAPI + Pydantic/SQLModel, Hypothesis)** for t
     - _Requirements: 4.1_
 
 - [x] 20. Dashboard shell and shared components
-  - [~] 20.1 Implement the `Dashboard Shell` component
+  - [ ] 20.1 Implement the `Dashboard Shell` component
     - Dark-mode layout hosting all three modules, a global `Data_Source_Mode` provenance banner, and
       global loading/error surfaces
     - _Requirements: 10.1, 10.2, 4.4_
-  - [~] 20.2 Implement shared components: status badge, timeline, map wrapper, animated stepper
+  - [ ] 20.2 Implement shared components: status badge, timeline, map wrapper, animated stepper
     - Assemble the timeline in chronological order from signal events and scenario projection points
     - _Requirements: 10.2, 10.3_
   - [ ]* 20.3 Write property test for chronological timeline ordering
@@ -291,7 +291,7 @@ All code examples use **Python (FastAPI + Pydantic/SQLModel, Hypothesis)** for t
     - _Requirements: 10.1, 10.2_
 
 - [x] 21. Risk Radar view
-  - [~] 21.1 Implement the `Risk Radar View`
+  - [ ] 21.1 Implement the `Risk Radar View`
     - Leaflet map drawing each corridor as a colored polyline by band, a ranked list of
       corridors/countries by score, a detail drawer showing contributing signals with source and
       timestamp, and the provenance badge; wire to `/risk/scores`, `/risk/{target}/signals`,
@@ -303,7 +303,7 @@ All code examples use **Python (FastAPI + Pydantic/SQLModel, Hypothesis)** for t
     - _Requirements: 3.5, 4.3, 4.4_
 
 - [x] 22. Scenario Simulator view
-  - [~] 22.1 Implement the `Scenario Simulator View`
+  - [ ] 22.1 Implement the `Scenario Simulator View`
     - Scenario picker, assumptions panel with inputs bounded to each assumption's valid range, a Run
       action, a Recharts timeline of projected values, assumptions-used display, and Save/Load
       controls; wire to the scenarios endpoints
@@ -322,12 +322,12 @@ All code examples use **Python (FastAPI + Pydantic/SQLModel, Hypothesis)** for t
     - **Validates: Requirements 8.5**
 
 - [x] 24. Pipeline Runner view and error/loading states
-  - [~] 24.1 Implement the `Pipeline Runner View`
+  - [ ] 24.1 Implement the `Pipeline Runner View`
     - One-click trigger for `/pipeline/run`, an animated stepper showing each stage result as it
       completes, a prominent `Pipeline_Latency` readout, and surfaced linked actions for high-band
       corridors
     - _Requirements: 9.1, 9.2, 9.3_
-  - [~] 24.2 Implement per-module loading and error isolation across all views
+  - [ ] 24.2 Implement per-module loading and error isolation across all views
     - Each module shows a loading indicator while its computation is in progress; on failure it shows
       a module-scoped error in place of the loading indicator and preserves sibling module results
     - _Requirements: 10.4, 10.5_
@@ -340,15 +340,15 @@ All code examples use **Python (FastAPI + Pydantic/SQLModel, Hypothesis)** for t
   - Ensure all tests pass, ask the user if questions arise.
 
 - [x] 26. Live provider implementations behind the abstraction
-  - [~] 26.1 Implement `LiveDataSource` (news/GDELT feed) implementing `DataSourceProvider`
+  - [ ] 26.1 Implement `LiveDataSource` (news/GDELT feed) implementing `DataSourceProvider`
     - Fetch and shape raw signals; on failure raise `DataSourceError` so ingestion falls back to
       simulated data
     - _Requirements: 1.1, 1.3_
-  - [~] 26.2 Implement `GroqProvider` (primary) and `GeminiProvider` (secondary) implementing `LLMProvider`
+  - [ ] 26.2 Implement `GroqProvider` (primary) and `GeminiProvider` (secondary) implementing `LLMProvider`
     - Call the free-tier APIs with the configured timeout; raise `LLMError` on failure/timeout so the
       extractor falls back to `DeterministicExtractor`
     - _Requirements: 2.1, 2.3_
-  - [~] 26.3 Wire provider selection through `core/config.py`
+  - [ ] 26.3 Wire provider selection through `core/config.py`
     - Select live vs simulated data source and Groq/Gemini/deterministic LLM by configuration, keeping
       the deterministic path as the guaranteed fallback
     - _Requirements: 1.3, 2.3_

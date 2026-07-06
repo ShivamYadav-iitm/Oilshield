@@ -10,6 +10,99 @@
   }
 
   body {
-    @apply bg-surface-950 text-slate-200 antialiased;
+    @apply bg-surface-950 font-sans text-slate-700 antialiased;
+    /* "Aurora / mesh" command-center ambience: a few large, very-low-opacity
+       radial gradient blobs (teal, sky, mint) drifting over the near-white
+       base, plus a barely-there grid texture. All blobs sit at ~0.05–0.10
+       opacity so content stays crisp and readable on the light theme. */
+    background-color: #eef2f4;
+    background-image:
+      /* teal blob, upper-left */
+      radial-gradient(
+        780px circle at 8% -6%,
+        rgba(13, 148, 136, 0.08),
+        transparent 62%
+      ),
+      /* sky blob, upper-right */
+      radial-gradient(
+        900px circle at 96% 4%,
+        rgba(14, 165, 233, 0.07),
+        transparent 60%
+      ),
+      /* mint blob, lower-left */
+      radial-gradient(
+        820px circle at 12% 108%,
+        rgba(45, 212, 191, 0.06),
+        transparent 60%
+      ),
+      /* cool wash, lower-right for balance */
+      radial-gradient(
+        1000px circle at 100% 100%,
+        rgba(203, 213, 225, 0.18),
+        transparent 55%
+      ),
+      /* faint grid lines */
+      linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      46px 46px,
+      46px 46px;
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-tight text-slate-900;
+  }
+
+  /* Numeric readouts default to the mono face so scores, latency and prices
+     carry a consistent data-terminal feel wherever `font-mono` is applied. */
+}
+
+@layer components {
+  /* Gradient hairline border for glass cards — a wrapping ring that fades from
+     a faint light slate highlight to transparent. Applied via a pseudo-element
+     so it layers above the card's own background without affecting layout. */
+  .glass-hairline {
+    position: relative;
+  }
+  .glass-hairline::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      160deg,
+      rgba(148, 163, 184, 0.35),
+      rgba(148, 163, 184, 0.12) 32%,
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Shimmer skeleton block used by loading states. */
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-slate-100;
+  }
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full animate-shimmer;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.7),
+      transparent
+    );
   }
 }

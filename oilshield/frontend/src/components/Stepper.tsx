@@ -35,17 +35,17 @@ export const DEFAULT_PIPELINE_STEPS: Step[] = [
 ];
 
 const NODE_CLASSES: Record<StepState, string> = {
-  pending: "border-surface-600 bg-surface-800 text-slate-500",
-  active: "border-accent bg-accent/10 text-accent",
-  done: "border-green-500/50 bg-green-500/15 text-green-400",
-  error: "border-red-500/50 bg-red-500/15 text-red-400",
+  pending: "border-slate-300 bg-slate-100 text-slate-400",
+  active: "border-accent bg-teal-50 text-accent",
+  done: "border-emerald-300 bg-emerald-50 text-emerald-600",
+  error: "border-rose-300 bg-rose-50 text-rose-600",
 };
 
 const LABEL_CLASSES: Record<StepState, string> = {
-  pending: "text-slate-500",
+  pending: "text-slate-400",
   active: "text-accent",
-  done: "text-slate-200",
-  error: "text-red-300",
+  done: "text-slate-700",
+  error: "text-rose-600",
 };
 
 function StepNode({ state, index }: { state: StepState; index: number }) {
@@ -89,13 +89,13 @@ export function Stepper({ steps, latencyMs, className }: StepperProps) {
                 )}
               </div>
               {!isLast && (
-                <div className="relative mx-1 h-0.5 flex-1 self-start rounded bg-surface-600" style={{ marginTop: 15 }}>
+                <div className="relative mx-1 h-0.5 flex-1 self-start rounded bg-slate-200" style={{ marginTop: 15 }}>
                   <motion.div
                     initial={false}
                     animate={{ scaleX: connectorDone ? 1 : 0 }}
                     transition={{ duration: 0.4 }}
                     style={{ transformOrigin: "left" }}
-                    className="absolute inset-0 rounded bg-green-500/60"
+                    className="absolute inset-0 rounded bg-emerald-500/70"
                   />
                 </div>
               )}
@@ -105,7 +105,7 @@ export function Stepper({ steps, latencyMs, className }: StepperProps) {
       </div>
 
       {latencyMs !== undefined && (
-        <div className="mt-3 flex items-center gap-2 text-xs text-slate-400">
+        <div className="mt-3 flex items-center gap-2 text-xs text-slate-500">
           <span className="uppercase tracking-wide text-slate-500">Pipeline latency</span>
           <span className="font-mono text-sm text-accent">{formatLatencyMs(latencyMs)}</span>
         </div>

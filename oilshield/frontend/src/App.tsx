@@ -10,7 +10,7 @@
 // module-scoped error surface and fetches independently — so one module failing
 // renders an in-place error without blanking out its siblings (R10.4, R10.5).
 
-import { DashboardShell } from "./components";
+import { DashboardShell, KpiStrip } from "./components";
 import {
   RiskRadarView,
   ScenarioSimulatorView,
@@ -25,6 +25,7 @@ function App() {
       // surfaces its own live/simulated provenance from its fetched data (R4.4).
       dataSourceMode="simulated"
       dataSourceModes={{ news: "simulated", prices: "simulated" }}
+      overview={<KpiStrip />}
       riskRadar={<RiskRadarView />}
       scenarioSimulator={<ScenarioSimulatorView />}
       procurement={<ProcurementView />}

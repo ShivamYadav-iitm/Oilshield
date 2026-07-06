@@ -17,9 +17,9 @@ import type { RiskBand } from "../types";
  *   high     -> red
  */
 export const BAND_HEX: Record<RiskBand, string> = {
-  low: "#22c55e", // tailwind green-500
-  elevated: "#f59e0b", // tailwind amber-500
-  high: "#ef4444", // tailwind red-500
+  low: "#10B981", // emerald-500
+  elevated: "#F59E0B", // amber-500 (darkened for contrast on white)
+  high: "#F43F5E", // rose-500
 };
 
 /** Return the hex color for a risk band (green / amber / red). */
@@ -29,12 +29,12 @@ export function bandColor(band: RiskBand): string {
 
 /**
  * Tailwind utility classes per band for status badges (background + text + border).
- * Tuned for the dark-mode shell.
+ * Light tints tuned for the light-mode shell.
  */
 export const BAND_BADGE_CLASSES: Record<RiskBand, string> = {
-  low: "bg-green-500/15 text-green-400 border border-green-500/30",
-  elevated: "bg-amber-500/15 text-amber-400 border border-amber-500/30",
-  high: "bg-red-500/15 text-red-400 border border-red-500/30",
+  low: "bg-emerald-50 text-emerald-700 border border-emerald-200",
+  elevated: "bg-amber-50 text-amber-700 border border-amber-200",
+  high: "bg-rose-50 text-rose-700 border border-rose-200",
 };
 
 /** Return the Tailwind badge classes for a risk band. */

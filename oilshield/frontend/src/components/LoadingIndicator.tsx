@@ -18,7 +18,7 @@ export function LoadingIndicator({
   className,
 }: LoadingIndicatorProps) {
   const wrapper = [
-    "flex items-center justify-center gap-2 text-sm text-slate-400",
+    "flex items-center justify-center gap-2 text-sm text-slate-500",
     fullHeight ? "h-full min-h-[120px]" : "",
     className ?? "",
   ]

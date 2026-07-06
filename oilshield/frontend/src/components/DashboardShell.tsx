@@ -8,7 +8,7 @@
 // (tasks 21-24) can slot in; placeholders render until then.
 
 import type { ReactNode } from "react";
-import { Activity, Radar, Ship, SlidersHorizontal, Workflow } from "lucide-react";
+import { Gauge, Radar, Ship, SlidersHorizontal, Workflow } from "lucide-react";
 import type { DataSourceMode } from "../types";
 import { Panel } from "./Panel";
 import { ProvenanceBanner } from "./ProvenanceBanner";
@@ -20,6 +20,9 @@ export interface DashboardShellProps {
   dataSourceMode?: DataSourceMode;
   /** Optional per-source provenance breakdown. */
   dataSourceModes?: Record<string, string>;
+
+  /** Optional hero content (e.g. KPI strip) rendered above the module stack. */
+  overview?: ReactNode;
 
   /** Module region content; placeholders render when omitted. */
   riskRadar?: ReactNode;
@@ -43,10 +46,11 @@ function Placeholder({ label }: { label: string }) {
   );
 }
 
-/** The dark-mode command-center chrome and module layout. */
+/** The light command-center chrome and module layout. */
 export function DashboardShell({
   dataSourceMode,
   dataSourceModes,
+  overview,
   riskRadar,
   scenarioSimulator,
   procurement,
@@ -57,32 +61,31 @@ export function DashboardShell({
   onRetryGlobal,
 }: DashboardShellProps) {
   return (
-    <div className="min-h-full bg-surface-950 text-slate-200">
-      <header className="border-b border-surface-700 bg-surface-900/80 backdrop-blur">
+    <div className="min-h-full bg-surface-950 text-slate-700">
+      <header className="relative border-b border-slate-200 bg-gradient-to-b from-white to-surface-950/70 backdrop-blur-xl">
+        {/* Thin accent hairline across the very top of the command center. */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
-              <Activity className="h-6 w-6" />
-            </span>
+          <div className="flex items-center gap-2.5">
+            <Gauge className="h-7 w-7 shrink-0 text-teal-600" aria-hidden />
             <div>
-              <h1 className="text-lg font-semibold tracking-tight text-slate-100">OilShield</h1>
-              <p className="text-xs text-slate-400">India Energy Resilience Command Center</p>
+              <h1 className="font-display text-lg font-bold tracking-tight text-slate-900">
+                OilShield
+              </h1>
+              <p className="text-xs text-slate-500">India Energy Resilience Command Center</p>
             </div>
           </div>
-          <ProvenanceBanner
-            mode={dataSourceMode}
-            modes={dataSourceModes}
-            className="hidden sm:flex"
-          />
         </div>
+        {/* Faint accent glow line under the header. */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
       </header>
 
       <main className="mx-auto max-w-[1600px] px-6 py-6">
-        {/* Global provenance banner (always visible, incl. small screens). */}
+        {/* Global provenance banner (always visible). */}
         <ProvenanceBanner
           mode={dataSourceMode}
           modes={dataSourceModes}
-          className="mb-6 sm:hidden"
+          className="mb-6"
         />
 
         {globalError && (
@@ -100,6 +103,9 @@ export function DashboardShell({
           </Panel>
         ) : (
           <>
+            {/* Hero overview (KPI strip) above the module stack. */}
+            {overview && <div className="mb-6">{overview}</div>}
+
             {/*
               Each module view is self-contained: it renders its own titled Panel
               plus its own loading / module-scoped error surfaces and fetches
@@ -119,6 +125,7 @@ export function DashboardShell({
                   title="Live Risk Radar"
                   subtitle="Corridor & supplier risk scores"
                   icon={Radar}
+                  accent="rose"
                   ariaLabel="Live Risk Radar"
                   className="min-h-[320px]"
                 >
@@ -131,6 +138,7 @@ export function DashboardShell({
                   title="Disruption Scenario Simulator"
                   subtitle="What-if cascade impacts"
                   icon={SlidersHorizontal}
+                  accent="teal"
                   ariaLabel="Disruption Scenario Simulator"
                   className="min-h-[320px]"
                 >
@@ -143,6 +151,7 @@ export function DashboardShell({
                   title="Adaptive Procurement"
                   subtitle="Ranked alternative sources & routes"
                   icon={Ship}
+                  accent="emerald"
                   ariaLabel="Adaptive Procurement"
                   className="min-h-[320px]"
                 >
@@ -157,6 +166,7 @@ export function DashboardShell({
                   title="Signal-to-Recommendation Pipeline"
                   subtitle="One-click end-to-end run with latency readout"
                   icon={Workflow}
+                  accent="violet"
                   ariaLabel="End-to-end pipeline"
                 >
                   <Placeholder label="Pipeline runner loads here." />

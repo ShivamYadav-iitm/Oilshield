@@ -15,10 +15,10 @@ export interface ErrorMessageProps {
   className?: string;
 }
 
-/** A contained, dark-mode error card scoped to a single module. */
+/** A contained, light error card scoped to a single module. */
 export function ErrorMessage({ module, message, onRetry, className }: ErrorMessageProps) {
   const wrapper = [
-    "flex flex-col gap-2 rounded-lg border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200",
+    "flex flex-col gap-2 rounded-lg border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700",
     className ?? "",
   ]
     .filter(Boolean)
@@ -26,16 +26,16 @@ export function ErrorMessage({ module, message, onRetry, className }: ErrorMessa
 
   return (
     <div className={wrapper} role="alert">
-      <div className="flex items-center gap-2 font-semibold text-red-300">
+      <div className="flex items-center gap-2 font-semibold text-rose-700">
         <AlertTriangle className="h-4 w-4" aria-hidden />
         <span className="uppercase tracking-wide">{module}</span>
       </div>
-      <p className="text-red-200/90">{message}</p>
+      <p className="text-rose-600">{message}</p>
       {onRetry && (
         <button
           type="button"
           onClick={onRetry}
-          className="mt-1 self-start rounded-md border border-red-400/40 px-3 py-1 text-xs font-medium text-red-100 transition hover:bg-red-500/20"
+          className="mt-1 self-start rounded-md border border-rose-300 px-3 py-1 text-xs font-medium text-rose-700 transition hover:bg-rose-100"
         >
           Retry
         </button>

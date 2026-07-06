@@ -12,6 +12,7 @@
 // useState/useEffect, mirroring the sibling module views.
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { RefreshCw, Ship, ShoppingCart } from "lucide-react";
 import { recommendProcurement, ApiError } from "../api";
 import { Panel, LoadingIndicator, ErrorMessage } from "../components";
@@ -32,21 +33,104 @@ function Attribute({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-0.5">
       <span className="text-[10px] uppercase tracking-wide text-slate-500">{label}</span>
-      <span className="text-sm font-medium text-slate-100">{value}</span>
+      <span className="text-sm font-medium text-slate-900">{value}</span>
     </div>
   );
 }
 
-/** One ranked procurement option card (R8.5); #1 is visually highlighted. */
+/**
+ * An attribute with a slim colored progress bar beneath the value. `fraction`
+ * (0..1) drives the bar width; `tone` picks the fill color. Purely visual — the
+ * underlying values are unchanged.
+ */
+function AttributeBar({
+  label,
+  value,
+  fraction,
+  tone,
+}: {
+  label: string;
+  value: string;
+  fraction: number;
+  tone: "emerald" | "amber" | "sky";
+}) {
+  const pct = Math.max(0, Math.min(1, fraction)) * 100;
+  const fill =
+    tone === "emerald"
+      ? "bg-emerald-500"
+      : tone === "amber"
+        ? "bg-amber-500"
+        : "bg-sky-500";
+  return (
+    <div className="flex flex-col gap-1">
+      <span className="text-[10px] uppercase tracking-wide text-slate-500">{label}</span>
+      <span className="text-sm font-medium text-slate-900">{value}</span>
+      <span className="mt-0.5 block h-1 w-full overflow-hidden rounded-full bg-slate-100">
+        <span className={`block h-full rounded-full ${fill}`} style={{ width: `${pct}%` }} />
+      </span>
+    </div>
+  );
+}
+
+/** Radial score ring (SVG circular progress) showing recommendation_score/100. */
+function RadialScore({ score }: { score: number }) {
+  const radius = 26;
+  const circumference = 2 * Math.PI * radius;
+  const pct = Math.max(0, Math.min(100, score));
+  const offset = circumference * (1 - pct / 100);
+  return (
+    <div className="relative flex h-20 w-20 shrink-0 items-center justify-center">
+      <svg className="h-20 w-20 -rotate-90" viewBox="0 0 64 64" aria-hidden>
+        <defs>
+          <linearGradient id="proc-score-ring" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#10B981" />
+            <stop offset="100%" stopColor="#0D9488" />
+          </linearGradient>
+        </defs>
+        <circle
+          cx="32"
+          cy="32"
+          r={radius}
+          fill="none"
+          strokeWidth="6"
+          className="stroke-slate-200"
+        />
+        <circle
+          cx="32"
+          cy="32"
+          r={radius}
+          fill="none"
+          strokeWidth="6"
+          strokeLinecap="round"
+          stroke="url(#proc-score-ring)"
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+        />
+      </svg>
+      <div className="absolute flex flex-col items-center">
+        <span className="font-mono text-xl font-bold leading-none text-slate-900">
+          {formatScore(score)}
+        </span>
+        <span className="text-[8px] uppercase tracking-widest text-slate-500">score</span>
+      </div>
+    </div>
+  );
+}
+
+const cardItem = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } },
+};
+
+/** One ranked procurement option row (R8.5); #1 gets a left accent bar. */
 function OptionCard({ option, rank }: { option: ProcurementOption; rank: number }) {
   const isTop = rank === 1;
 
   return (
-    <li
-      className={`rounded-lg border p-4 transition ${
-        isTop
-          ? "border-accent/50 bg-accent/5 shadow-[0_0_0_1px_rgba(56,189,248,0.15)]"
-          : "border-surface-700 bg-surface-900/40"
+    <motion.li
+      variants={cardItem}
+      className={`py-4 pl-3 border-l-2 ${
+        isTop ? "border-emerald-500" : "border-transparent"
       }`}
       aria-label={`Rank ${rank}: ${option.supplier_country} ${option.crude_grade}`}
     >
@@ -54,65 +138,72 @@ function OptionCard({ option, rank }: { option: ProcurementOption; rank: number 
         {/* Rank + title (supplier country + crude grade). */}
         <div className="flex min-w-0 items-start gap-3">
           <span
-            className={`inline-flex h-7 shrink-0 items-center justify-center rounded-md px-2 text-xs font-semibold ${
-              isTop
-                ? "bg-accent text-surface-950"
-                : "bg-surface-800 text-slate-300"
+            className={`shrink-0 text-sm font-semibold ${
+              isTop ? "text-emerald-600" : "text-slate-400"
             }`}
             aria-hidden
           >
             #{rank}
           </span>
           <div className="min-w-0">
-            <h3 className="truncate text-sm font-semibold text-slate-100">
+            <h3 className="truncate text-sm font-semibold text-slate-900">
               {option.supplier_country}
-              <span className="ml-1.5 text-slate-400">· {option.crude_grade}</span>
+              <span className="ml-1.5 text-slate-500">· {option.crude_grade}</span>
               {isTop && (
-                <span className="ml-2 rounded bg-accent/20 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-accent">
+                <span className="ml-2 text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
                   Top pick
                 </span>
               )}
             </h3>
-            <p className="mt-0.5 flex items-center gap-1 text-xs text-slate-400">
+            <p className="mt-0.5 flex items-center gap-1 text-xs text-slate-500">
               <Ship className="h-3 w-3" aria-hidden />
               <span className="truncate">{option.tanker_route}</span>
             </p>
           </div>
         </div>
 
-        {/* Recommendation score, shown prominently (R8.4). */}
-        <div className="flex shrink-0 flex-col items-center rounded-lg border border-surface-700 bg-surface-900/60 px-3 py-1.5">
-          <span className="text-2xl font-bold leading-none text-accent">
-            {formatScore(option.recommendation_score)}
-          </span>
-          <span className="mt-0.5 text-[9px] uppercase tracking-wide text-slate-500">
-            score
-          </span>
-        </div>
+        {/* Recommendation score (R8.4): a radial ring for the top pick, a clean
+            prominent number for the rest. */}
+        {isTop ? (
+          <RadialScore score={option.recommendation_score} />
+        ) : (
+          <div className="flex shrink-0 flex-col items-center">
+            <span className="font-mono text-2xl font-bold leading-none text-emerald-600">
+              {formatScore(option.recommendation_score)}
+            </span>
+            <span className="mt-0.5 text-[9px] uppercase tracking-wide text-slate-500">
+              score
+            </span>
+          </div>
+        )}
       </div>
 
-      {/* Attribute grid: spot price + the three 0..1 fractions (R8.5). */}
+      {/* Attribute grid: spot price + the three 0..1 fractions with bars (R8.5). */}
       <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <Attribute label="Spot price / bbl" value={formatUsd(option.spot_price_usd_bbl)} />
-        <Attribute
+        <AttributeBar
           label="Tanker availability"
           value={formatFraction(option.tanker_availability)}
+          fraction={option.tanker_availability}
+          tone="emerald"
         />
-        <Attribute
+        <AttributeBar
           label="Port congestion"
           value={formatFraction(option.port_congestion)}
+          fraction={1 - option.port_congestion}
+          tone="amber"
         />
-        <Attribute
+        <AttributeBar
           label="Grade compatibility"
           value={formatFraction(option.grade_compatibility)}
+          fraction={option.grade_compatibility}
+          tone="sky"
         />
       </div>
 
       {/* Plain-language rationale (R8.5). */}
-      <p className="mt-3 border-t border-surface-800 pt-3 text-sm text-slate-300">
-        {option.rationale}
-      </p>
-    </li>
+      <p className="mt-3 text-sm text-slate-600">{option.rationale}</p>
+    </motion.li>
   );
 }
 
@@ -149,7 +240,7 @@ export function ProcurementView() {
       type="button"
       onClick={() => void loadRecommendations()}
       disabled={loading}
-      className="inline-flex items-center gap-1.5 rounded-md border border-surface-700 px-3 py-1 text-xs font-medium text-slate-200 transition hover:bg-surface-800 disabled:cursor-not-allowed disabled:opacity-50"
+      className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
     >
       <RefreshCw
         className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`}
@@ -164,6 +255,8 @@ export function ProcurementView() {
       title="Adaptive Procurement"
       subtitle="Ranked alternative crude sources & tanker routes"
       icon={ShoppingCart}
+      accent="emerald"
+      motionDelay={0.21}
       actions={refreshButton}
       ariaLabel="Adaptive Procurement Recommendation"
       bodyClassName="space-y-4"
@@ -177,17 +270,23 @@ export function ProcurementView() {
           onRetry={() => void loadRecommendations()}
         />
       ) : ranked.length === 0 ? (
-        <div className="flex min-h-[160px] items-center justify-center rounded-lg border border-dashed border-surface-700 bg-surface-900/20 p-6 text-center">
+        <div className="flex min-h-[160px] items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50 p-6 text-center">
           <p className="text-sm text-slate-500">
             No procurement options met the recommendation criteria.
           </p>
         </div>
       ) : (
-        <ol className="flex flex-col gap-3" aria-label="Ranked procurement options">
+        <motion.ol
+          className="divide-y divide-slate-100"
+          aria-label="Ranked procurement options"
+          initial="hidden"
+          animate="show"
+          variants={{ show: { transition: { staggerChildren: 0.07 } } }}
+        >
           {ranked.map((option, index) => (
             <OptionCard key={option.id} option={option} rank={index + 1} />
           ))}
-        </ol>
+        </motion.ol>
       )}
     </Panel>
   );

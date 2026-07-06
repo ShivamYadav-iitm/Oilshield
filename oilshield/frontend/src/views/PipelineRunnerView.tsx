@@ -184,7 +184,7 @@ export function PipelineRunnerView() {
       type="button"
       onClick={() => void handleRun()}
       disabled={running}
-      className="inline-flex items-center gap-1.5 rounded-md bg-accent px-3 py-1.5 text-xs font-semibold text-surface-950 transition hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-50"
+      className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-accent-700 disabled:cursor-not-allowed disabled:opacity-50"
     >
       <Play className="h-3.5 w-3.5" aria-hidden />
       {running ? "Running…" : "Run end-to-end pipeline"}
@@ -196,6 +196,8 @@ export function PipelineRunnerView() {
       title="Signal-to-Recommendation Pipeline"
       subtitle="One-click end-to-end run with latency readout"
       icon={Workflow}
+      accent="violet"
+      motionDelay={0.29}
       actions={runButton}
       ariaLabel="End-to-end pipeline"
       bodyClassName="space-y-5"
@@ -216,24 +218,22 @@ export function PipelineRunnerView() {
             onChange={(e) => setScenarioId(e.target.value)}
             placeholder="defaults to the auto-selected high-band scenario"
             disabled={running}
-            className="w-full rounded-md border border-surface-700 bg-surface-900 px-3 py-2 text-sm text-slate-100 outline-none focus:border-accent/50 disabled:opacity-50"
+            className="w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-accent/50 disabled:opacity-50"
           />
         </div>
       </div>
 
       {/* Animated stepper: each stage advances as the run progresses (R9.1). */}
-      <div className="rounded-lg border border-surface-700 bg-surface-900/40 p-4">
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
         <Stepper steps={steps} />
       </div>
 
       {/* Prominent Pipeline_Latency readout (R9.2). */}
       {result && (
-        <div className="flex items-center gap-4 rounded-lg border border-accent/30 bg-accent/5 p-4">
-          <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent/15 text-accent">
-            <Timer className="h-6 w-6" aria-hidden />
-          </span>
+        <div className="flex items-center gap-3">
+          <Timer className="h-7 w-7 shrink-0 text-accent" aria-hidden />
           <div>
-            <p className="text-[10px] uppercase tracking-wide text-slate-400">
+            <p className="text-[10px] uppercase tracking-wide text-slate-500">
               Pipeline latency
             </p>
             <p className="font-mono text-3xl font-bold leading-tight text-accent">
@@ -254,7 +254,7 @@ export function PipelineRunnerView() {
 
       {/* Per-stage result summary shown on a successful run (R9.1). */}
       {result && (
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-y-4 sm:grid-cols-4 sm:gap-y-0 sm:divide-x sm:divide-slate-200">
           <StageSummary label="Ingest" value={`${result.signals.length}`} unit="signals" />
           <StageSummary
             label="Score"
@@ -276,16 +276,16 @@ export function PipelineRunnerView() {
 
       {/* Impact end-state details, when a scenario ran (R9.1). */}
       {impactSummary && Object.keys(impactSummary).length > 0 && (
-        <div className="rounded-lg border border-surface-700 bg-surface-900/40 p-4">
-          <h3 className="mb-3 text-sm font-semibold text-slate-100">Impact end-state</h3>
-          <ul className="grid gap-2 sm:grid-cols-2" aria-label="Impact end-state">
+        <div className="border-t border-slate-100 pt-4">
+          <h3 className="mb-2 text-sm font-semibold text-slate-900">Impact end-state</h3>
+          <ul className="grid gap-x-8 sm:grid-cols-2" aria-label="Impact end-state">
             {Object.entries(impactSummary).map(([key, value]) => (
               <li
                 key={key}
-                className="flex items-center justify-between gap-3 rounded-md border border-surface-700 bg-surface-900/60 px-3 py-2"
+                className="flex items-center justify-between gap-3 border-b border-slate-100 py-2"
               >
-                <span className="min-w-0 truncate text-sm text-slate-300">{key}</span>
-                <span className="whitespace-nowrap font-mono text-sm text-slate-100">
+                <span className="min-w-0 truncate text-sm text-slate-600">{key}</span>
+                <span className="whitespace-nowrap font-mono text-sm text-slate-900">
                   {Number.isFinite(value) ? value.toFixed(2) : "—"}
                 </span>
               </li>
@@ -296,47 +296,47 @@ export function PipelineRunnerView() {
 
       {/* Linked actions for high-band corridors (R9.3). */}
       {result && (
-        <div className="rounded-lg border border-surface-700 bg-surface-900/40 p-4">
+        <div className="border-t border-slate-100 pt-4">
           <div className="mb-3 flex items-center gap-2">
             <Link2 className="h-4 w-4 text-accent" aria-hidden />
-            <h3 className="text-sm font-semibold text-slate-100">
+            <h3 className="text-sm font-semibold text-slate-900">
               Linked actions — high-band corridors
             </h3>
           </div>
           {linkedActions.length === 0 ? (
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-500">
               No corridors are in the high band; no linked actions were surfaced.
             </p>
           ) : (
-            <ul className="flex flex-col gap-2" aria-label="Linked actions">
+            <ul className="divide-y divide-slate-100" aria-label="Linked actions">
               {linkedActions.map((action, index) => (
                 <li
                   key={`${action.corridor ?? "corridor"}-${index}`}
-                  className="rounded-md border border-red-500/30 bg-red-500/5 p-3"
+                  className="border-l-2 border-rose-400 py-3 pl-3"
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <span className="flex items-center gap-1.5 text-sm font-semibold text-red-200">
+                    <span className="flex items-center gap-1.5 text-sm font-semibold text-rose-700">
                       <AlertTriangle className="h-3.5 w-3.5" aria-hidden />
                       {action.corridor ?? "Unknown corridor"}
                     </span>
                     {typeof action.risk_score === "number" && (
-                      <span className="rounded bg-red-500/20 px-2 py-0.5 font-mono text-xs text-red-200">
+                      <span className="whitespace-nowrap font-mono text-xs text-rose-700">
                         risk {formatScore(action.risk_score)}
                       </span>
                     )}
                   </div>
-                  <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400">
+                  <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
                     <span className="flex items-center gap-1.5">
-                      <ArrowRight className="h-3 w-3 text-slate-500" aria-hidden />
+                      <ArrowRight className="h-3 w-3 text-slate-400" aria-hidden />
                       Scenario:{" "}
-                      <code className="rounded bg-surface-800 px-1 py-0.5 font-mono text-slate-200">
+                      <code className="font-mono text-slate-700">
                         {action.recommended_scenario_id ?? "—"}
                       </code>
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <ArrowRight className="h-3 w-3 text-slate-500" aria-hidden />
+                      <ArrowRight className="h-3 w-3 text-slate-400" aria-hidden />
                       Procurement:{" "}
-                      <code className="rounded bg-surface-800 px-1 py-0.5 font-mono text-slate-200">
+                      <code className="font-mono text-slate-700">
                         {action.recommended_option_id ?? "—"}
                       </code>
                     </span>
@@ -351,7 +351,7 @@ export function PipelineRunnerView() {
   );
 }
 
-/** A compact stage-result card (value + unit) shown after a successful run. */
+/** A compact stage-result stat (value + unit) shown after a successful run. */
 function StageSummary({
   label,
   value,
@@ -362,10 +362,10 @@ function StageSummary({
   unit: string;
 }) {
   return (
-    <div className="rounded-lg border border-surface-700 bg-surface-900/60 p-3">
+    <div className="px-4 first:pl-0">
       <p className="text-[10px] uppercase tracking-wide text-slate-500">{label}</p>
-      <p className="mt-0.5 text-xl font-bold text-slate-100">{value}</p>
-      <p className="mt-0.5 truncate text-[11px] text-slate-400" title={unit}>
+      <p className="mt-0.5 font-mono text-xl font-bold text-slate-900">{value}</p>
+      <p className="mt-0.5 truncate text-[11px] text-slate-500" title={unit}>
         {unit}
       </p>
     </div>

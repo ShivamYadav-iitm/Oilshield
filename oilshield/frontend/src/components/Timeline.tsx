@@ -133,19 +133,19 @@ export function Timeline({
   }
 
   return (
-    <ol className={`relative space-y-4 border-l border-surface-600 pl-5 ${className ?? ""}`}>
+    <ol className={`relative space-y-4 border-l border-slate-200 pl-5 ${className ?? ""}`}>
       {resolved.map((item) => {
         const Icon = KIND_ICON[item.kind];
         return (
           <li key={item.id} className="relative">
             <span
               aria-hidden
-              className="absolute -left-[27px] flex h-5 w-5 items-center justify-center rounded-full border border-surface-600 bg-surface-800 text-accent"
+              className="absolute -left-[27px] flex h-5 w-5 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-accent"
             >
               <Icon className="h-3 w-3" />
             </span>
             <div className="flex items-center justify-between gap-2">
-              <p className="text-sm font-medium text-slate-200">{item.title}</p>
+              <p className="text-sm font-medium text-slate-800">{item.title}</p>
               <div className="flex items-center gap-2">
                 {item.band && <StatusBadge band={item.band} size="sm" />}
                 <time className="whitespace-nowrap font-mono text-[11px] text-slate-500">
@@ -153,7 +153,7 @@ export function Timeline({
                 </time>
               </div>
             </div>
-            {item.detail && <p className="mt-0.5 text-xs text-slate-400">{item.detail}</p>}
+            {item.detail && <p className="mt-0.5 text-xs text-slate-500">{item.detail}</p>}
           </li>
         );
       })}

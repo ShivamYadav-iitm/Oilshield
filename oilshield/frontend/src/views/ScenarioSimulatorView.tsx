@@ -20,10 +20,10 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
+  Area,
+  AreaChart,
   CartesianGrid,
   Legend,
-  Line,
-  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -59,10 +59,10 @@ interface ImpactPointMetrics {
 }
 
 const METRIC_LINES: MetricLine[] = [
-  { key: "refinery_run_rate_pct", label: "Refinery run rate (%)", color: "#38bdf8" },
-  { key: "fuel_price_index", label: "Fuel price index", color: "#f59e0b" },
-  { key: "spr_days_of_cover", label: "SPR days of cover", color: "#22c55e" },
-  { key: "gdp_index", label: "GDP index", color: "#a78bfa" },
+  { key: "refinery_run_rate_pct", label: "Refinery run rate (%)", color: "#0D9488" },
+  { key: "fuel_price_index", label: "Fuel price index", color: "#F43F5E" },
+  { key: "spr_days_of_cover", label: "SPR days of cover", color: "#10B981" },
+  { key: "gdp_index", label: "GDP index", color: "#8B5CF6" },
 ];
 
 /**
@@ -90,6 +90,25 @@ function initialOverrides(scenario: Scenario): Overrides {
   const out: Overrides = {};
   for (const a of scenario.assumptions) {
     out[a.key] = a.value;
+  }
+  return out;
+}
+
+/**
+ * Keep only the overrides whose assumption is adjustable on the given scenario.
+ * The backend rejects overrides for non-adjustable assumptions (R5.5), so
+ * non-adjustable keys must be stripped before Run/Save.
+ */
+function adjustableOverrides(
+  scenario: Scenario | null,
+  overrides: Overrides,
+): Overrides {
+  if (!scenario) return {};
+  const out: Overrides = {};
+  for (const a of scenario.assumptions) {
+    if (a.adjustable && a.key in overrides) {
+      out[a.key] = overrides[a.key];
+    }
   }
   return out;
 }
@@ -177,7 +196,10 @@ export function ScenarioSimulatorView() {
     setRunning(true);
     setRunError(null);
     try {
-      const res = await runScenario(selectedId, overrides);
+      // Only adjustable assumptions may be overridden; the backend rejects
+      // overrides for non-adjustable ones (R5.5).
+      const payload = adjustableOverrides(selected, overrides);
+      const res = await runScenario(selectedId, payload);
       setImpact(res.impact);
       setAssumptionsUsed(res.assumptions_used);
     } catch (err) {
@@ -188,7 +210,7 @@ export function ScenarioSimulatorView() {
     } finally {
       setRunning(false);
     }
-  }, [selectedId, overrides]);
+  }, [selectedId, overrides, selected]);
 
   /** Save the configured scenario and surface the returned id (R7.1). */
   const handleSave = useCallback(async () => {
@@ -197,7 +219,9 @@ export function ScenarioSimulatorView() {
     setSaveError(null);
     setSavedId(null);
     try {
-      const res = await saveScenario(selectedId, overrides);
+      // Only send overrides for adjustable assumptions (R5.5).
+      const payload = adjustableOverrides(selected, overrides);
+      const res = await saveScenario(selectedId, payload);
       setSavedId(res.id);
     } catch (err) {
       const message =
@@ -206,7 +230,7 @@ export function ScenarioSimulatorView() {
     } finally {
       setSaving(false);
     }
-  }, [selectedId, overrides]);
+  }, [selectedId, overrides, selected]);
 
   /** Load a saved scenario by id and repopulate assumption values (R7.2, R7.3). */
   const handleLoad = useCallback(async () => {
@@ -242,6 +266,8 @@ export function ScenarioSimulatorView() {
       title="Disruption Scenario Simulator"
       subtitle="Tune assumptions and project the downstream impact"
       icon={FlaskConical}
+      accent="teal"
+      motionDelay={0.13}
       ariaLabel="Disruption Scenario Simulator"
       bodyClassName="space-y-4"
     >
@@ -261,7 +287,7 @@ export function ScenarioSimulatorView() {
             <div>
               <label
                 htmlFor="scenario-picker"
-                className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400"
+                className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500"
               >
                 Scenario
               </label>
@@ -269,7 +295,7 @@ export function ScenarioSimulatorView() {
                 id="scenario-picker"
                 value={selectedId}
                 onChange={(e) => handleSelect(e.target.value)}
-                className="w-full rounded-md border border-surface-700 bg-surface-900 px-3 py-2 text-sm text-slate-100 outline-none focus:border-accent/50"
+                className="w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-accent/50"
               >
                 {scenarios.length === 0 && <option value="">No scenarios</option>}
                 {scenarios.map((s) => (
@@ -280,15 +306,15 @@ export function ScenarioSimulatorView() {
               </select>
               {selected && (
                 <p className="mt-1 text-xs text-slate-500">
-                  Corridor: <span className="text-slate-300">{selected.corridor}</span>
+                  Corridor: <span className="text-slate-700">{selected.corridor}</span>
                 </p>
               )}
             </div>
 
             {/* Assumptions panel (R5.2, R5.3, R5.4). */}
             {selected && (
-              <div className="rounded-lg border border-surface-700 bg-surface-900/40 p-4">
-                <h3 className="mb-3 text-sm font-semibold text-slate-100">
+              <div className="border-t border-slate-100 pt-4">
+                <h3 className="mb-3 text-sm font-semibold text-slate-900">
                   Assumptions
                 </h3>
                 <ul className="flex flex-col gap-4" aria-label="Scenario assumptions">
@@ -300,7 +326,7 @@ export function ScenarioSimulatorView() {
                         <div className="flex items-center justify-between gap-3">
                           <label
                             htmlFor={`assumption-${a.key}`}
-                            className="text-sm text-slate-200"
+                            className="text-sm text-slate-700"
                           >
                             {a.label}
                             {a.unit && (
@@ -320,11 +346,11 @@ export function ScenarioSimulatorView() {
                               onChange={(e) =>
                                 handleAssumptionChange(a, e.target.valueAsNumber)
                               }
-                              className="w-24 rounded-md border border-surface-700 bg-surface-900 px-2 py-1 text-right text-sm text-slate-100 outline-none focus:border-accent/50"
+                              className="w-24 rounded-md border border-slate-200 bg-white px-2 py-1 text-right text-sm text-slate-900 outline-none focus:border-accent/50"
                             />
                           ) : (
                             <span
-                              className="w-24 rounded-md border border-surface-800 bg-surface-800/60 px-2 py-1 text-right text-sm text-slate-400"
+                              className="w-24 text-right text-sm text-slate-500"
                               aria-label={`${a.label} (read-only)`}
                             >
                               {a.value}
@@ -351,7 +377,7 @@ export function ScenarioSimulatorView() {
                             </div>
                           </>
                         ) : (
-                          <p className="mt-1 text-[10px] uppercase tracking-wide text-slate-600">
+                          <p className="mt-1 text-[10px] uppercase tracking-wide text-slate-400">
                             Fixed
                           </p>
                         )}
@@ -365,28 +391,28 @@ export function ScenarioSimulatorView() {
                   type="button"
                   onClick={() => void handleRun()}
                   disabled={running || !selectedId}
-                  className="mt-4 inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-accent px-3 py-2 text-sm font-medium text-surface-950 transition hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="mt-4 inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-white transition hover:bg-accent-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <Play className="h-4 w-4" aria-hidden />
                   {running ? "Running…" : "Run scenario"}
                 </button>
 
                 {/* Save / Load controls (R7.1, R7.2, R7.3). */}
-                <div className="mt-4 space-y-3 border-t border-surface-700 pt-4">
+                <div className="mt-4 space-y-3 border-t border-slate-100 pt-4">
                   <div>
                     <button
                       type="button"
                       onClick={() => void handleSave()}
                       disabled={saving || !selectedId}
-                      className="inline-flex items-center gap-1.5 rounded-md border border-surface-700 px-3 py-1.5 text-xs font-medium text-slate-200 transition hover:bg-surface-800 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <Save className="h-3.5 w-3.5" aria-hidden />
                       {saving ? "Saving…" : "Save scenario"}
                     </button>
                     {savedId && (
-                      <p className="mt-1.5 text-xs text-slate-400">
+                      <p className="mt-1.5 text-xs text-slate-500">
                         Saved as{" "}
-                        <code className="rounded bg-surface-800 px-1 py-0.5 font-mono text-accent">
+                        <code className="rounded bg-slate-100 px-1 py-0.5 font-mono text-accent">
                           {savedId}
                         </code>
                       </p>
@@ -412,13 +438,13 @@ export function ScenarioSimulatorView() {
                         value={loadId}
                         onChange={(e) => setLoadId(e.target.value)}
                         placeholder="saved scenario id"
-                        className="min-w-0 flex-1 rounded-md border border-surface-700 bg-surface-900 px-2 py-1.5 text-sm text-slate-100 outline-none focus:border-accent/50"
+                        className="min-w-0 flex-1 rounded-md border border-slate-200 bg-white px-2 py-1.5 text-sm text-slate-900 outline-none focus:border-accent/50"
                       />
                       <button
                         type="button"
                         onClick={() => void handleLoad()}
                         disabled={loadingSaved || !loadId.trim()}
-                        className="inline-flex items-center gap-1.5 rounded-md border border-surface-700 px-3 py-1.5 text-xs font-medium text-slate-200 transition hover:bg-surface-800 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         <FolderOpen className="h-3.5 w-3.5" aria-hidden />
                         {loadingSaved ? "Loading…" : "Load"}
@@ -450,80 +476,97 @@ export function ScenarioSimulatorView() {
             ) : impact ? (
               <>
                 {/* Recharts timeline of projected values (R6.6). */}
-                <div className="rounded-lg border border-surface-700 bg-surface-900/40 p-4">
-                  <h3 className="mb-3 text-sm font-semibold text-slate-100">
+                <div>
+                  <h3 className="mb-3 text-sm font-semibold text-slate-900">
                     Projected impact timeline
                   </h3>
                   <div className="h-72 w-full">
                     <ResponsiveContainer width="100%" height="100%">
-                      <LineChart
+                      <AreaChart
                         data={impact.timeline}
                         margin={{ top: 8, right: 16, bottom: 8, left: 0 }}
                       >
-                        <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
+                        <defs>
+                          {METRIC_LINES.map((m) => (
+                            <linearGradient
+                              key={m.key}
+                              id={`area-grad-${m.key}`}
+                              x1="0"
+                              y1="0"
+                              x2="0"
+                              y2="1"
+                            >
+                              <stop offset="0%" stopColor={m.color} stopOpacity={0.35} />
+                              <stop offset="95%" stopColor={m.color} stopOpacity={0} />
+                            </linearGradient>
+                          ))}
+                        </defs>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                         <XAxis
                           dataKey="day"
-                          stroke="#64748b"
-                          tick={{ fontSize: 11 }}
+                          stroke="#64748B"
+                          tick={{ fontSize: 11, fill: "#64748B" }}
                           label={{
                             value: "Day",
                             position: "insideBottom",
                             offset: -2,
-                            fill: "#64748b",
+                            fill: "#64748B",
                             fontSize: 11,
                           }}
                         />
-                        <YAxis stroke="#64748b" tick={{ fontSize: 11 }} />
+                        <YAxis stroke="#64748B" tick={{ fontSize: 11, fill: "#64748B" }} />
                         <Tooltip
                           contentStyle={{
-                            backgroundColor: "#0f172a",
-                            border: "1px solid #334155",
+                            backgroundColor: "#FFFFFF",
+                            border: "1px solid #E2E8F0",
                             borderRadius: 8,
                             fontSize: 12,
                           }}
-                          labelStyle={{ color: "#e2e8f0" }}
+                          labelStyle={{ color: "#0F172A" }}
                           labelFormatter={(d) => `Day ${d}`}
                         />
-                        <Legend wrapperStyle={{ fontSize: 11 }} />
+                        <Legend wrapperStyle={{ fontSize: 11, color: "#475569" }} />
                         {METRIC_LINES.map((m) => (
-                          <Line
+                          <Area
                             key={m.key}
                             type="monotone"
                             dataKey={m.key}
                             name={m.label}
                             stroke={m.color}
-                            dot={false}
                             strokeWidth={2}
+                            fill={`url(#area-grad-${m.key})`}
+                            dot={false}
+                            activeDot={{ r: 3 }}
                           />
                         ))}
-                      </LineChart>
+                      </AreaChart>
                     </ResponsiveContainer>
                   </div>
                 </div>
 
                 {/* Assumptions used, as returned by the backend (R6.2). */}
-                <div className="rounded-lg border border-surface-700 bg-surface-900/40 p-4">
-                  <h3 className="mb-3 text-sm font-semibold text-slate-100">
+                <div className="border-t border-slate-100 pt-4">
+                  <h3 className="mb-3 text-sm font-semibold text-slate-900">
                     Assumptions used
                   </h3>
                   {assumptionsUsed.length === 0 ? (
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-slate-500">
                       No assumptions reported.
                     </p>
                   ) : (
                     <ul
-                      className="grid gap-2 sm:grid-cols-2"
+                      className="grid gap-x-8 sm:grid-cols-2"
                       aria-label="Assumptions used"
                     >
                       {assumptionsUsed.map((a) => (
                         <li
                           key={a.key}
-                          className="flex items-center justify-between gap-3 rounded-md border border-surface-700 bg-surface-900/60 px-3 py-2"
+                          className="flex items-center justify-between gap-3 border-b border-slate-100 py-2"
                         >
-                          <span className="min-w-0 truncate text-sm text-slate-300">
+                          <span className="min-w-0 truncate text-sm text-slate-600">
                             {a.label}
                           </span>
-                          <span className="whitespace-nowrap font-mono text-sm text-slate-100">
+                          <span className="whitespace-nowrap font-mono text-sm text-slate-900">
                             {a.value}
                             {a.unit && (
                               <span className="ml-1 text-xs text-slate-500">
@@ -538,7 +581,7 @@ export function ScenarioSimulatorView() {
                 </div>
               </>
             ) : (
-              <div className="flex h-full min-h-[200px] items-center justify-center rounded-lg border border-dashed border-surface-700 bg-surface-900/20 p-6 text-center">
+              <div className="flex h-full min-h-[200px] items-center justify-center p-6 text-center">
                 <p className="text-sm text-slate-500">
                   Pick a scenario, adjust its assumptions, and run to project the
                   downstream impact.

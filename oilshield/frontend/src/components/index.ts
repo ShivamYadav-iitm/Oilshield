@@ -4,7 +4,9 @@ export { DashboardShell } from "./DashboardShell";
 export type { DashboardShellProps } from "./DashboardShell";
 
 export { Panel } from "./Panel";
-export type { PanelProps } from "./Panel";
+export type { PanelProps, PanelAccent } from "./Panel";
+
+export { KpiStrip } from "./KpiStrip";
 
 export { ProvenanceBanner, deriveOverallMode } from "./ProvenanceBanner";
 export type { ProvenanceBannerProps } from "./ProvenanceBanner";
