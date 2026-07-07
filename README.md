@@ -180,8 +180,8 @@ proj-et/
 ## Documentation
 
 - [Submission overview](docs/SUBMISSION.md)
-- [Pitch deck](docs/PITCH_DECK.md)
-- [Demo script](docs/DEMO_SCRIPT.md)
+- [Pitch deck](https://github.com/user-attachments/files/29737973/Oilshield.pdf)
+
 
 ---
 
